@@ -55,6 +55,8 @@
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",
     "semver": "^7.3.5",
+    "shapefile": "^0.6.6",
+    "shp": "^0.0.1",
     "shpjs": "^4.0.2",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.3.1",

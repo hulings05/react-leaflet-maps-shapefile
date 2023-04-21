@@ -2653,6 +2653,11 @@ array-includes@^3.1.5, array-includes@^3.1.6:
     get-intrinsic "^1.1.3"
     is-string "^1.0.7"
 
+array-source@0.0:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/array-source/-/array-source-0.0.4.tgz"
+  integrity sha512-frNdc+zBn80vipY+GdcJkLEbMWj3xmzArYApmUGxoiV8uAu/ygcs9icPdsGdA26h0MkHUMW6EN2piIvVx+M5Mw==
+
 array-union@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/array-union/-/array-union-1.0.2.tgz"
@@ -3394,7 +3399,7 @@ combined-stream@^1.0.8:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^2.18.0, commander@^2.20.0:
+commander@^2.18.0, commander@^2.20.0, commander@2:
   version "2.20.3"
   resolved "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
@@ -4784,6 +4789,13 @@ file-loader@^6.2.0:
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
+
+file-source@0.6:
+  version "0.6.1"
+  resolved "https://registry.npmjs.org/file-source/-/file-source-0.6.1.tgz"
+  integrity sha512-1R1KneL7eTXmXfKxC10V/9NeGOdbsAXJ+lQ//fvvcHUgtaZcZDWNJNblxAoVOyV1cj45pOtUrR3vZTBwqcW8XA==
+  dependencies:
+    stream-source "0.3"
 
 filelist@^1.0.1:
   version "1.0.4"
@@ -7345,6 +7357,14 @@ path-parse@^1.0.7:
   resolved "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz"
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
+path-source@0.1:
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/path-source/-/path-source-0.1.3.tgz"
+  integrity sha512-dWRHm5mIw5kw0cs3QZLNmpUWty48f5+5v9nWD2dw3Y0Hf+s01Ag8iJEWV0Sm0kocE8kK27DrIowha03e1YR+Qw==
+  dependencies:
+    array-source "0.0"
+    file-source "0.6"
+
 path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.1.7.tgz"
@@ -8784,6 +8804,18 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
+shapefile@^0.6.6:
+  version "0.6.6"
+  resolved "https://registry.npmjs.org/shapefile/-/shapefile-0.6.6.tgz"
+  integrity sha512-rLGSWeK2ufzCVx05wYd+xrWnOOdSV7xNUW5/XFgx3Bc02hBkpMlrd2F1dDII7/jhWzv0MSyBFh5uJIy9hLdfuw==
+  dependencies:
+    array-source "0.0"
+    commander "2"
+    path-source "0.1"
+    slice-source "0.4"
+    stream-source "0.3"
+    text-encoding "^0.6.4"
+
 shebang-command@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz"
@@ -8800,6 +8832,11 @@ shell-quote@^1.7.3:
   version "1.8.0"
   resolved "https://registry.npmjs.org/shell-quote/-/shell-quote-1.8.0.tgz"
   integrity sha512-QHsz8GgQIGKlRi24yFc6a6lN69Idnx634w49ay6+jA5yFh7a1UY+4Rp6HPx/L/1zcEDPEij8cIsiqR6bQsE5VQ==
+
+shp@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/shp/-/shp-0.0.1.tgz"
+  integrity sha512-UfBfN5DlT2S5c5Kk1+ee+vgAsEVBS+f84fVnj1b5qYQYAnsZ8BE3PlizdEVNrGlbFKqKsLD+bTlFScg+PEV1Zw==
 
 shpjs@^4.0.2:
   version "4.0.4"
@@ -8840,6 +8877,11 @@ slash@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/slash/-/slash-4.0.0.tgz"
   integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
+
+slice-source@0.4:
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/slice-source/-/slice-source-0.4.1.tgz"
+  integrity sha512-YiuPbxpCj4hD9Qs06hGAz/OZhQ0eDuALN0lRWJez0eD/RevzKqGdUx1IOMUnXgpr+sXZLq3g8ERwbAH0bCb8vg==
 
 sockjs@^0.3.24:
   version "0.3.24"
@@ -8978,6 +9020,11 @@ stream-http@^3.2.0:
     inherits "^2.0.4"
     readable-stream "^3.6.0"
     xtend "^4.0.2"
+
+stream-source@0.3:
+  version "0.3.5"
+  resolved "https://registry.npmjs.org/stream-source/-/stream-source-0.3.5.tgz"
+  integrity sha512-ZuEDP9sgjiAwUVoDModftG0JtYiLUV8K4ljYD1VyUMRWtbVf92474o4kuuul43iZ8t/hRuiDAx1dIJSvirrK/g==
 
 "stream@npm:stream-browserify@3.0.0":
   version "3.0.0"
@@ -9332,6 +9379,11 @@ text-encoding-polyfill@^0.6.7:
   version "0.6.7"
   resolved "https://registry.npmjs.org/text-encoding-polyfill/-/text-encoding-polyfill-0.6.7.tgz"
   integrity sha512-/DZ1XJqhbqRkCop6s9ZFu8JrFRwmVuHg4quIRm+ziFkR3N3ec6ck6yBvJ1GYeEQZhLVwRW0rZE+C3SSJpy0RTg==
+
+text-encoding@^0.6.4:
+  version "0.6.4"
+  resolved "https://registry.npmjs.org/text-encoding/-/text-encoding-0.6.4.tgz"
+  integrity sha512-hJnc6Qg3dWoOMkqP53F0dzRIgtmsAge09kxUIqGrEUS4qr5rWLckGYaQAVr+opBrIMRErGgy6f5aPnyPpyGRfg==
 
 text-table@^0.2.0:
   version "0.2.0"

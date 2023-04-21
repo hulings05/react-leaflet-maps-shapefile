@@ -1,135 +1,105 @@
-import { useEffect, useState, useCallback } from 'react'
-import { MapContainer, TileLayer, LayersControl, Marker, Popup } from 'react-leaflet'
+import { useEffect, useState, useCallback } from 'react';
+import { MapContainer, TileLayer, LayersControl, Marker, Popup } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
-// Retrieve all Leaflet Default Icon options from CSS, in particular all icon images URL's, to improve compatibility with bundlers and frameworks that modify URL's in CSS. 
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-
 import { ShapeFile } from './ShapeFile';
-
 import { TileProviders } from '../lib/TileProviders';
-
 import  colorbrewer from 'colorbrewer';
-
 var iconv = require('iconv-lite');
 
-
-
-
-
 const MyMap = () => {
-  
-  // console.log(colorbrewer.schemeGroups.sequential);
-  // console.log(colorbrewer)
-
-  const center = [35.4564, -88.3301]
-  const zoom = 2
-
+  const center = [35.4564, -88.3301];
+  const zoom = 2;
 
   const [geodata, setGeodata] = useState(null);
-  const [map, setMap] = useState(null)
-  const [position, setPosition] = useState(map ? map.getCenter() : { lat: center[0], lng: center[1] })
+  const [map, setMap] = useState(null);
+  const [position, setPosition] = useState(map ? map.getCenter() : { lat: center[0], lng: center[1] });
+  const [selectedState, setSelectedState] = useState(null); // added selectedState
 
   const { BaseLayer, Overlay } = LayersControl;
 
-
-  // See: https://react-leaflet.js.org/docs/example-external-state/
   const DisplayPosition = (props) => {
-
     const onClick = useCallback(() => {
-      props.map.setView(center, zoom)
-    }, [props.map])
+      props.map.setView(center, zoom);
+    }, [props.map]);
 
     const onMove = useCallback(() => {
-      setPosition(props.map.getCenter())
-    }, [props.map])
+      setPosition(props.map.getCenter());
+    }, [props.map]);
 
     useEffect(() => {
-      props.map.on('move', onMove)
+      props.map.on('move', onMove);
       return () => {
-        props.map.off('move', onMove)
-      }
-    }, [props.map, onMove])
+        props.map.off('move', onMove);
+      };
+    }, [props.map, onMove]);
 
     return (
       <div>
         Marker at (lat, lon): ({position.lat.toFixed(4)}, {position.lng.toFixed(4)}{' '})
         <button onClick={onClick}>reset</button>
       </div>
-    )
-  }
-
-
+    );
+  };
 
   const handleFile = (e) => {
     var reader = new FileReader();
     var file = e.target.files[0];
     reader.readAsArrayBuffer(file);
     reader.onload = function (buffer) {
-      console.log("loading data...", file.name)
-      setGeodata( {data: buffer.target.result, name: file.name });
-    }
-  }
-
-  const onEachFeature = (feature, layer) => {
-    if (feature.properties) {
-      layer.bindPopup(Object.keys(feature.properties).map(function (k) {
-        if(k === '__color__'){
-          return;
-        } 
-        return k + ": " + feature.properties[k];
-      }).join("<br />"), {
-        maxHeight: 200
-      }
-      );
-    }
-  }
-
-  const style = (feature) => {
-    console.log ( feature );
-    return ({
-      radius: 6,
-      weight: 2,
-      dashArray: "2",
-      // from http://stackoverflow.com/a/15710692
-      // color: colorbrewer.Spectral[11][Math.abs(JSON.stringify(feature).split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)) % 11]
-      color: 'black'
-    });
-  }
-  const clickedStyle = (feature) => {
-    console.log ( feature );
-    return ({
-      radius: 6,
-      weight: 2,
-      dashArray: "2",
-      // from http://stackoverflow.com/a/15710692
-      // color: colorbrewer.Spectral[11][Math.abs(JSON.stringify(feature).split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)) % 11]
-      color: 'red'
-    });
-  }
-  const [myStyle, setMyStyle] = useState(style);
-
-  
-  const changeStyle = () => {
-    const updatedStyle = {
-      color: 'red'
+      console.log("loading data...", file.name);
+      setGeodata({ data: buffer.target.result, name: file.name });
     };
-    setMyStyle(updatedStyle, () => {
-      console.log(myStyle);
-    });
   };
+
+  const [selectedStates, setSelectedStates] = useState(new Set()); // updated selectedState to selectedStates, and initialized with Set()
+
+// ...
+
+const onEachFeature = (feature, layer) => {
+  if (feature.properties) {
+    layer.bindPopup(Object.keys(feature.properties).map(function (k) {
+      if (k === '__color__') {
+        return;
+      }
+      return k + ": " + feature.properties[k];
+    }).join("<br />"), {
+      maxHeight: 200
+    }
+    );
+    layer.on('click', () => { // updated click event handler
+      if (selectedStates.has(feature.properties.NAME)) {
+        selectedStates.delete(feature.properties.NAME); // if already selected, remove from selected states
+      } else {
+        selectedStates.add(feature.properties.NAME); // if not selected, add to selected states
+      }
+      setSelectedStates(new Set(selectedStates)); // update state with new Set object
+    });
+  }
+};
+
+const style = (feature) => {
+  return ({
+    radius: 6,
+    weight: 2,
+    dashArray: "2",
+    color: selectedStates.has(feature.properties.NAME) ? 'red' : 'black', // change color based on selected states
+    fillColor: selectedStates.has(feature.properties.NAME) ? 'blue' : 'gray', // change fill color based on selected states
+    fillOpacity: 0.8
+  });
+};
 
 
   let ShapeLayers = null;
   if (geodata !== null) {
     ShapeLayers = (
       <Overlay checked name={geodata.name}>
-        <ShapeFile 
-          data={geodata.data} 
-          style={myStyle} 
-          onEachFeature={onEachFeature} 
-          onClick={changeStyle}
-          />
+        <ShapeFile
+          data={geodata.data}
+          style={style}
+          onEachFeature={onEachFeature}
+        />
       </Overlay>);
   }
 
@@ -142,14 +112,20 @@ const MyMap = () => {
       </p>
     )
   }
-
+  function Clear() {
+    setSelectedStates(new Set());
+  }
 
   return (
     <>
 
       {map ? <DisplayPosition map={map} position={position} setPosition={setPosition} /> : null}
 
-      <div>
+      <button style={{margin: 20, float: 'left', color:'red'}} onClick = {Clear}>
+          Clear Selected States
+      </button>
+
+      <div style={{margin: 20, float: 'right'}}>
         Upload ShapeFile (.zip): <input type="file" accept=".zip" onChange={handleFile} className="inputfile" />
       </div>
 
