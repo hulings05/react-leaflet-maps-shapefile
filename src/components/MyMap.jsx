@@ -86,7 +86,7 @@ const style = (feature) => {
     dashArray: "2",
     color: selectedStates.has(feature.properties.NAME) ? 'red' : 'black', // change color based on selected states
     fillColor: selectedStates.has(feature.properties.NAME) ? 'blue' : 'gray', // change fill color based on selected states
-    fillOpacity: 0.8
+    fillOpacity: 0.4
   });
 };
 
