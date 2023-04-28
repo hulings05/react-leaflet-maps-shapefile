@@ -7,13 +7,13 @@
  const attributionOpenStreetMap = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 export const TileProviders =  {
-	OpenStreetMap: {
+	OpenStreetMap: { 
 		url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 		options: {
 			maxZoom: 19,
 			attribution:
 				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-		},
+		}, 
 		variants: {
 			Mapnik: {},
 			BlackWhite: {
@@ -22,6 +22,7 @@ export const TileProviders =  {
 					attribution: '' + attributionOpenStreetMap + ''
 				}
 			},
+			/*
 			DE: {
 				url: 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',
 				options: {
@@ -34,7 +35,7 @@ export const TileProviders =  {
 					maxZoom: 20,
 					attribution: '&copy; OpenStreetMap France | ' + attributionOpenStreetMap + ''
 				}
-			},
+			}, 
 			HOT: {
 				url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 				options: {
@@ -44,9 +45,10 @@ export const TileProviders =  {
 						'hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
 				}
 			},
-
+*/
 		}
 	},
+	/*
 	OpenTopoMap: {
 		url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
 		options: {
@@ -54,6 +56,7 @@ export const TileProviders =  {
 			attribution: 'Map data: ' + attributionOpenStreetMap + ', <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 		}
 	},
+	/*
 	Stadia: {
 		url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
 		options: {
@@ -183,6 +186,7 @@ export const TileProviders =  {
 			Voyager: 'voyager'
 		}
 	},
+	*/
 	Stamen: {
 		url: 'http://{s}.tile.stamen.com/{variant}/{z}/{x}/{y}.{ext}',
 		options: {
@@ -198,16 +202,16 @@ export const TileProviders =  {
 		variants: {
 			Toner: 'toner',
 			TonerBackground: 'toner-background',
-			TonerHybrid: 'toner-hybrid',
+			/* TonerHybrid: 'toner-hybrid', */
 			TonerLite: 'toner-lite',
-			Watercolor: {
+			/* Watercolor: {
 				options: {
 					variant: 'watercolor',
 					ext: 'jpg',
 					minZoom: 1,
 					maxZoom: 16
 				}
-			},
+			}, */
 			Terrain: {
 				options: {
 					variant: 'terrain',
@@ -215,6 +219,7 @@ export const TileProviders =  {
 					maxZoom: 18
 				}
 			},
+			/*
 			TerrainBackground: {
 				options: {
 					variant: 'terrain-background',
@@ -228,7 +233,7 @@ export const TileProviders =  {
 					minZoom: 0,
 					maxZoom: 18
 				}
-			},
+			}, */
 		}
 	},
 
@@ -302,7 +307,7 @@ export const TileProviders =  {
 			Labels: 'labels'
 		}
 	},
-	Esri: {
+	/* Esri: {
 		url: 'https://server.arcgisonline.com/ArcGIS/rest/services/{variant}/MapServer/tile/{z}/{y}/{x}',
 		options: {
 			variant: 'World_Street_Map',
@@ -386,7 +391,7 @@ export const TileProviders =  {
 				}
 			}
 		}
-	},
+	}, 
 	OpenWeatherMap: {
 		url: 'http://{s}.tile.openweathermap.org/map/{variant}/{z}/{x}/{y}.png?appid={apiKey}',
 		options: {
@@ -415,6 +420,7 @@ export const TileProviders =  {
 		 * These basemaps are free, but you need an api id and app key. Please sign up at
 		 * https://developer.here.com/plans
 		 */
+		/*
 		url:
 			'https://{s}.{base}.maps.api.here.com/maptile/2.1/' +
 			'{type}/{mapID}/{variant}/{z}/{x}/{y}/{size}/{format}?' +
@@ -527,7 +533,7 @@ export const TileProviders =  {
 				}
 			}
 		}
-	},
+	}, */
 	HEREv3: {
 		/*
 		 * HERE maps API Version 3.
@@ -888,6 +894,7 @@ export const TileProviders =  {
 			}
 		}
 	},
+	/*
 	OneMapSG: {
 		url: 'https://maps-{s}.onemap.sg/v3/{variant}/{z}/{x}/{y}.png',
 		options: {
@@ -920,7 +927,7 @@ export const TileProviders =  {
 				url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}'
 			}
 		}
-	},
+	}, */
 	// WaymarkedTrails: {
 	// 	url: 'https://tile.waymarkedtrails.org/{variant}/{z}/{x}/{y}.png',
 	// 	options: {
